@@ -1,0 +1,39 @@
+<!-- Add an item through a form -->
+<section class="container" id="categories" ng-controller="itemsCtrl">
+    <h1>Ajout d'un item</h1>
+
+    <!-- formulaire -->
+    <div>
+        <form>
+            <div class="form-group">
+                <label>Nom <input class="form-control" type="name" ng-model="name" required=true></label>
+            </div>
+            <div class="form-group">
+                <label>Categorie
+                    <select class="form-control" ng-model="category"
+                        ng-options="category as category.name for category in categoryList">
+                    </select>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>URL<input class="form-control" type="text" ng-model="url" required=true
+                        placeholder="http://..."></label>
+            </div>
+            <div class="form-group">
+                <label>Description<textarea class="form-control" cols="64" rows="3"
+                        ng-model="description"></textarea></label>
+            </div>
+            <button class="btn btn-primary" type="submit" ng-click="addItem(name, category, url, description)">Ajouter</button>
+            <button class="btn btn-danger" type="reset" >Annuler</button>
+        </form>
+    </div>
+
+    <!-- aperçu -->
+    <div ng-show="preview">
+        <h1>Aperçu</h1>
+        <img class="img-category-pane" src="{{newCategory.url}}">
+        <p>{{newCategory.name}}</p>
+    </div>
+
+
+</section>

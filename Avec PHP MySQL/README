@@ -1,0 +1,12 @@
+# LAMP Project
+
+To test the LAMP version of the website : 
+
+- Run a LAMP server like XAMPP
+- Run the DBStructure.SQL file to fill your database
+- In the index file change the $_SERVER["DOCUMENT_ROOT"] variable by your own path of the Project
+- In the template file change the $index_uri variable by your own uri variable.
+- go to http://localhost/projet-web-equipe-2/LAMP/index.php
+- to create an admin FOR TESTING : go to the http address ...../LAMP/?action=createFakeAdmin
+    email : admin@admin.com
+    password : pwd

@@ -1,0 +1,33 @@
+<!-- items for a category -->
+<section class="container" id="items" ng-controller="itemsCtrl">
+    <h1 class="text-center">{{categoryName}}</h1>
+
+    <!-- addItem button, only if user is connected -->
+    <div class="">
+        <a href="addItem" role="button" class="btn btn-primary"
+            ng-show="userConnected">Ajouter un item</a>
+    </div>
+
+    <hr>
+    <!-- Filter item based on their category -->
+    <div class="row">
+        <article class="col-lg-4" ng-repeat="item in itemList | itemFilter:routeParams.category_id | filter:{name: searchTxt} ">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{item.url}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{item.date}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="btn btn-primary" role="button">Commenter</a>
+                    <a ng-show="item.userId==$storage.currentUser.userId" href="#" class="btn btn-warning" role="button">Modifier</a>
+                    <a ng-show="item.userId==$storage.currentUser.userId" href="#" class="btn btn-danger" role="button">Supprimer</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>

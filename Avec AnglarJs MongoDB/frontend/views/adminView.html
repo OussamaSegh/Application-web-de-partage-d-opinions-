@@ -1,0 +1,32 @@
+<!-- items for a category -->
+<section class="container" id="admin" ng-controller="adminCtrl">
+
+    <h1 class="text-center">Page d'administration</h1>
+    <h2>Liste des utilisateurs</h2>
+
+    <hr>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">email</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Status</th>
+                <th scope="col">Banni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in userList">
+                <th scope="row"> {{user._id}} </th>
+                <td> {{user.email}} </td>
+                <td> {{user.lastName}} </td>
+                <td> {{user.firstName}} </td>
+                <td> {{user.status}} </td>
+                <td> {{user.banned}} </td>
+            </tr>
+        </tbody>
+
+</section>

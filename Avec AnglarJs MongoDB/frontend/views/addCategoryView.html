@@ -1,0 +1,41 @@
+<!-- Add a category through a form -->
+<section class="container" id="categories" ng-controller="categoriesCtrl">
+    <h1>Ajout d'une catégorie</h1>
+
+    <!-- alert if the category was successfully created -->
+    <div class="alert alert-danger" role="alert" ng-show="addCategoryMsg!=''">
+        {{addCategoryMsg}}
+    </div>
+
+    <div class="row">
+        <!-- formulaire -->
+        <h5>Formulaire</h5>
+        <form class="col-lg-4">
+            <div class="form-group">
+                <label>Nom<input class="form-control" type="name" ng-model="name" required=true ng-value="routeParams.categoryName"></label>
+            </div>
+            <div class="form-group">
+                <label>URL<input class="form-control" type="text" ng-model="url" required=true ng-value="routeParams.categoryUrl" placeholder="http://..."></label>
+            </div>
+            <button ng-show="routeParams.category_id == undefined" class="btn btn-primary" type="submit" ng-click="addCategory(name, url)">Ajouter</button>
+            <button ng-show="routeParams.category_id != undefined" class="btn btn-primary" type="submit" ng-click="updateCategory(name, url, routeParams.category_id)">Mettre à jour</button>
+        </form>
+
+        <!-- aperçu -->
+        <h5>Aperçu</h5>
+        <div ng-show="routeParams.category_id == undefined" 
+            class="col-lg-4 card border border-secondary mb-3">
+            <img class="card-img-top rounded" src="{{url}}">
+            <h5 class="card-title text-center">{{name}}</h5>
+            <a class="btn btn-primary">Découvrir</a>
+        </div>
+
+        <div ng-show="routeParams.category_id != undefined"
+            class="col-lg-4 card border border-secondary mb-3">
+            <img class="card-img-top rounded" ng-src="{{routeParams.categoryUrl}}">
+            <h5 class="card-title text-center">{{name}}</h5>
+            <a class="btn btn-primary">Découvrir</a>
+        </div>
+    </div>
+
+</section>

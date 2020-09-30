@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Web MEAN</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/angular-storage.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="services/item.service.js"></script>
+    <script src="services/category.service.js"></script>
+    <script src="services/auth.service.js"></script>
+    <script src="services/user.service.js"></script>
+    <script src="controllers/main.ctrl.js"></script>
+    <script src="controllers/categories.ctrl.js"></script>
+    <script src="controllers/items.ctrl.js"></script>
+    <script src="controllers/admin.ctrl.js"></script>
+    <script src="controllers/user.ctrl.js"></script>
+    <script src="filters/category.filter.js"></script>
+    <script src="filters/item.filter.js"></script>
+    <base href="http://localhost/projet-web-equipe-2/MEAN/frontend/">
+</head>
+
+<body ng-controller="mainCtrl">
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" href="./">Accueil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <!-- buttons displayed depending if user connected or not. -->
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="login"
+                        ng-hide="userConnected" ng-class="{active: location.path()=='/login'}" >Connexion</a>
+                    <a class="nav-item nav-link" href="signin"
+                        ng-hide="userConnected" ng-class="{active: location.path()=='/signin'}">Inscription</a>
+                    <a class="nav-item nav-link" href="admin"
+                        ng-class="{active: location.path()=='/admin'}">Administration</a>
+                    <a class="nav-item nav-link" href
+                        ng-click="logout()" ng-show="userConnected">Déconnexion</a>
+                    <a class="nav-item nav-link" href="profile"
+                        ng-show="userConnected" ng-class="{active: location.path()=='/profile'}">Mon profil</a>
+                    <a class="nav-item nav-link" href="contributions"
+                        ng-show="userConnected" ng-class="{active: location.path()=='/contributions'}">Mes contributions</a>
+                </div>
+            </div>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search" ng-model="searchTxt">
+            </form>
+        </nav>
+    </header>
+
+    <!-- body -->
+    <div ng-view></div>
+
+    <!-- footer -->
+    <footer class="container">
+        <h5 class="text-center">DEBUG FOOTER</h5>
+        <hr />
+        <p>User connected : {{userConnected}}</p>
+        <p>UserId : {{$storage.currentUser.userId}}</p>
+        <p>Auth Token : {{$storage.currentUser.token}}</p>
+        <pre>$location.path() = {{location.path()}}</pre>
+        <pre>$route.current.templateUrl = {{route.current.templateUrl}}</pre>
+        <pre>$route.current.params = {{route.current.params}}</pre>
+        <pre>$route.current.scope.name = {{route.current.scope.name}}</pre>
+        <pre>$routeParams = {{routeParams}}</pre>
+        <hr />
+    </footer>
+</body>
+
+</html>

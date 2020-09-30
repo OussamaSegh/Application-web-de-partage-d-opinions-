@@ -1,0 +1,27 @@
+<!-- categories -->
+<section class="container" id="categories" ng-controller="categoriesCtrl">
+    <h1 class="text-center">Catégories</h1>
+
+    <div class="row">
+        <a href="addCategory" class="btn btn-secondary"
+            ng-show="userConnected">Ajouter une catégorie</a>
+    </div>
+    
+    <br>
+    
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="category in categories | filter:{name: searchTxt}">
+
+            <div class="card border border-secondary mb-3">
+                <img class="card-img-top rounded" src="{{category.url}}">
+                <h5 class="card-title text-center">{{category.name}}</h5>
+                <a class="btn btn-primary" href="items?category_id={{category._id}}">Découvrir</a>
+                <a class="btn btn-warning" 
+                    ng-hide="category.instanciated" href="addCategory?categoryName={{category.name}}&categoryUrl={{category.url}}&category_id={{category._id}}">Modifier</a>
+                <a class="btn btn-danger" 
+                    ng-hide="category.instanciated" ng-click="deleteCategory(category._id)">Supprimer</a>
+            </div>
+        </div>
+    </div>
+
+</section>
